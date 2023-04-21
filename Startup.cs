@@ -1,4 +1,9 @@
-﻿namespace LanchesMacDotnet6MVC;
+﻿using LanchesMacDotnet6MVC.Context;
+using LanchesMacDotnet6MVC.Repositories;
+using LanchesMacDotnet6MVC.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace LanchesMacDotnet6MVC;
 
 public class Startup
 {
@@ -12,6 +17,12 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<ILancheRepository, LancheRepository>();
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+
         services.AddControllersWithViews();
     }
 
