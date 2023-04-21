@@ -12,6 +12,7 @@ namespace LanchesMacDotnet6MVC.Controllers
 
         public IActionResult Index()
         {
+            //TempData["Nome"] = "Antonio"; //Recupera o valor ao acessar o home e depois redireciona pra list
             return View();
         }
 
