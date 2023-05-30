@@ -16,7 +16,7 @@ namespace LanchesMacDotnet6MVC.Models
 
         public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
-        public CarrinhoCompra GetCarrinhoCompra(IServiceProvider serviceProvider)
+        public static CarrinhoCompra GetCarrinhoCompra(IServiceProvider serviceProvider)
         {
             //Define a sessão
             ISession session = serviceProvider.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;

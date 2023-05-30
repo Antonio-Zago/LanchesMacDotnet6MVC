@@ -1,4 +1,5 @@
 ﻿using LanchesMacDotnet6MVC.Context;
+using LanchesMacDotnet6MVC.Models;
 using LanchesMacDotnet6MVC.Repositories;
 using LanchesMacDotnet6MVC.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ public class Startup
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sp => CarrinhoCompra.GetCarrinhoCompra(sp));//Cria instancias de carrinhos a cada request
 
         services.AddControllersWithViews();
 
