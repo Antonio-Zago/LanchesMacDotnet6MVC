@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dv+Z/aqHpoX47GhD/hcJGt4d3cbJFeb73lA/AD1Br20=",
+  "Hash": "fHPfn4QMNZ+7SMrL3XuVsgQzeR16XaWAgih8Rqv0hGk=",
   "Source": "LanchesMacDotnet6MVC",
   "BasePath": "_content/LanchesMacDotnet6MVC",
   "Mode": "Default",
@@ -134,6 +134,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\carousel13.jpg"
+    },
+    {
+      "Identity": "D:\\Meus Projetos\\LanchesMacDotnet6MVC\\LanchesMacDotnet6MVC\\wwwroot\\images\\Full-Cart-icon.png",
+      "SourceId": "LanchesMacDotnet6MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Meus Projetos\\LanchesMacDotnet6MVC\\LanchesMacDotnet6MVC\\wwwroot\\",
+      "BasePath": "_content/LanchesMacDotnet6MVC",
+      "RelativePath": "images/Full-Cart-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Full-Cart-icon.png"
+    },
+    {
+      "Identity": "D:\\Meus Projetos\\LanchesMacDotnet6MVC\\LanchesMacDotnet6MVC\\wwwroot\\images\\remove.ico",
+      "SourceId": "LanchesMacDotnet6MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Meus Projetos\\LanchesMacDotnet6MVC\\LanchesMacDotnet6MVC\\wwwroot\\",
+      "BasePath": "_content/LanchesMacDotnet6MVC",
+      "RelativePath": "images/remove.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\remove.ico"
     },
     {
       "Identity": "D:\\Meus Projetos\\LanchesMacDotnet6MVC\\LanchesMacDotnet6MVC\\wwwroot\\js\\site.js",
