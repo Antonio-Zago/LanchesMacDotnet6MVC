@@ -14,7 +14,7 @@ namespace LanchesMacDotnet6MVC.Repositories
             _appDbContext = appDbContext;   
         }
 
-        public IEnumerable<Lanche> Lanches => _appDbContext.Lanches;
+        public IEnumerable<Lanche> Lanches => _appDbContext.Lanches.Include(l => l.Categoria);
 
         public IEnumerable<Lanche> LanchesPreferidos => _appDbContext.Lanches.Where(a => a.IsLanchePreferido).Include(c => c.Categoria);
 
