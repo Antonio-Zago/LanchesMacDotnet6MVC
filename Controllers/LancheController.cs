@@ -39,14 +39,7 @@ namespace LanchesMacDotnet6MVC.Controllers
             }
             else
             {
-                if (string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Normal")).OrderBy(l => l.LancheNome);
-                }
-                else
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Natural")).OrderBy(l => l.LancheNome);
-                }
+                lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome == categoria).OrderBy(c => c.LancheNome);
                 categoriaAtual = categoria;
             }
 
@@ -57,6 +50,12 @@ namespace LanchesMacDotnet6MVC.Controllers
             };
 
             return View(lancheListViewModel);
+        }
+
+        public IActionResult Details(int lancheId)
+        {
+            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
+            return View(lanche);
         }
     }
 }
