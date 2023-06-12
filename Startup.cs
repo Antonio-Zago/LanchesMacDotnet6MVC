@@ -2,6 +2,7 @@
 using LanchesMacDotnet6MVC.Models;
 using LanchesMacDotnet6MVC.Repositories;
 using LanchesMacDotnet6MVC.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanchesMacDotnet6MVC;
@@ -20,6 +21,11 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
 
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
@@ -53,6 +59,9 @@ public class Startup
         app.UseRouting();
 
         app.UseSession();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseAuthorization();
 
