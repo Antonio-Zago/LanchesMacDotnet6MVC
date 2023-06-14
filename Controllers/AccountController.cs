@@ -42,7 +42,7 @@ namespace LanchesMacDotnet6MVC.Controllers
                     {
                         return RedirectToAction("index", "Home");
                     }
-                    return RedirectToAction(loginViewModel.ReturnUrl);
+                    return Redirect(loginViewModel.ReturnUrl);
                 }
 
             }
@@ -76,6 +76,16 @@ namespace LanchesMacDotnet6MVC.Controllers
                 }
             }
             return View(registroVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            HttpContext.User = null;
+
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
