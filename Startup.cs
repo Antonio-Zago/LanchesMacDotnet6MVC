@@ -2,6 +2,7 @@
 using LanchesMacDotnet6MVC.Models;
 using LanchesMacDotnet6MVC.Repositories;
 using LanchesMacDotnet6MVC.Repositories.Interfaces;
+using LanchesMacDotnet6MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,7 @@ public class Startup
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IPedidoRepository, PedidoRepository>();
+        services.AddScoped<ISeedUserRoleInitial, SeedRoleUserInitial>();
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => CarrinhoCompra.GetCarrinhoCompra(sp));//Cria instancias de carrinhos a cada request
@@ -41,7 +43,7 @@ public class Startup
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
     {
         if (env.IsDevelopment())
         {
@@ -57,6 +59,8 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRouting();
+        seedUserRoleInitial.SeedRoles();
+        seedUserRoleInitial.SeedUsers();
 
         app.UseSession();
 
@@ -75,6 +79,11 @@ public class Startup
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+            endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
         });
     }
 }
