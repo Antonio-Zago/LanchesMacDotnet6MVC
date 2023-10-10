@@ -5,6 +5,7 @@ using LanchesMacDotnet6MVC.Repositories.Interfaces;
 using LanchesMacDotnet6MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace LanchesMacDotnet6MVC;
 
@@ -33,10 +34,26 @@ public class Startup
         services.AddTransient<IPedidoRepository, PedidoRepository>();
         services.AddScoped<ISeedUserRoleInitial, SeedRoleUserInitial>();
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin", politica =>
+            {
+                politica.RequireRole("Admin");
+            });
+        });
+
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => CarrinhoCompra.GetCarrinhoCompra(sp));//Cria instancias de carrinhos a cada request
 
         services.AddControllersWithViews();
+
+        services.AddPaging(options =>
+        {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        }
+            
+            );
 
         services.AddMemoryCache();
         services.AddSession();
@@ -72,6 +89,10 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
+            endpoints.MapControllerRoute(
                 name: "categoriaFiltro",
                 pattern: "Lanche/{action}/{categoria?}",
                 defaults: new {Controller = "Lanche", action = "List"});
@@ -81,9 +102,7 @@ public class Startup
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-            endpoints.MapControllerRoute(
-                name: "areas",
-                pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+            
         });
     }
 }
