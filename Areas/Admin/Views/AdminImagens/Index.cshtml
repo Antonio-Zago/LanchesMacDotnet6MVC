@@ -1,0 +1,29 @@
+﻿<table>
+	<tr>
+		<td>
+			<form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="UploadFiles">
+				<div class="form-group">
+					<div class="col-md-10">
+						<p><b>Selecione os arquivos: </b></p>
+						<input type="file" name="files" multiple class="button btn-outline-primary"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10">
+						<input type="submit" value="Enviar" class="button btn-outline-primary"/>
+					</div>
+				</div>
+			</form>
+		</td>
+		<td>
+			<form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="GetImagens">
+				<div class="form-group">
+					<div class="col-md-10">
+						<input type="submit" value="Visualizar" class="button btn-outline-primary"/>
+					</div>
+				</div>
+			</form>
+		</td>
+	</tr>
+</table>
